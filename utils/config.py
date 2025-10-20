@@ -1,7 +1,7 @@
 from __future__ import annotations
-
+import yaml  # type: ignore[import-untyped]
 from pathlib import Path
-
+from typing import Any, Mapping
 import yaml
 from pydantic import BaseModel, Field, field_validator
 
@@ -47,7 +47,7 @@ class AppConfig(BaseModel):
     io: IOConfig
 
 
-def load_config(path: Path | str) -> AppConfig:
+def load_config(path: str | Path) -> Mapping[str]:
     p = Path(path)
     if not p.exists():
         raise FileNotFoundError(f"Config file not found: {p}")

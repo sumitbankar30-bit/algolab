@@ -2,7 +2,7 @@ import subprocess
 import sys
 
 
-def test_cli_ingest_and_features_and_backtest():
+def test_cli_ingest_and_features_and_backtest() -> None:
     # Run ingest
     r1 = subprocess.run(
         [sys.executable, "tasks.py", "ingest", "--config", "configs/default.yaml"],

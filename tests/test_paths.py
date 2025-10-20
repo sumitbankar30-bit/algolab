@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-def test_repo_paths_exist():
+def test_repo_paths_exist() -> None:
     root = Path(__file__).resolve().parents[1]
     for p in [
         "algos",
