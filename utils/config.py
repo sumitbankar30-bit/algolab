@@ -46,7 +46,7 @@ class AppConfig(BaseModel):
     io: IOConfig
 
 
-def load_config(path: str | Path) -> Mapping[str]:
+def load_config(path: str | Path) -> AppConfig:
     p = Path(path)
     if not p.exists():
         raise FileNotFoundError(f"Config file not found: {p}")
