@@ -11,6 +11,7 @@ class DataPaths(BaseModel):
     staging: Path
     features: Path
 
+
 class FeatureConfig(BaseModel):
     sma_short: int = Field(10, ge=1)
     sma_long: int = Field(30, ge=2)
@@ -24,6 +25,7 @@ class FeatureConfig(BaseModel):
             raise ValueError("sma_long must be > sma_short")
         return v
 
+
 class BacktestConfig(BaseModel):
     symbol: str
     initial_capital: float = Field(100000, ge=0)
@@ -32,15 +34,18 @@ class BacktestConfig(BaseModel):
     start: str | None = None
     end: str | None = None
 
+
 class IOConfig(BaseModel):
     report_path: Path = Path("reports/backtest_summary.json")
     log_dir: Path = Path("logs")
+
 
 class AppConfig(BaseModel):
     data_paths: DataPaths
     features: FeatureConfig
     backtest: BacktestConfig
     io: IOConfig
+
 
 def load_config(path: Path | str) -> AppConfig:
     p = Path(path)

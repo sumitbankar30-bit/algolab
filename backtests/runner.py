@@ -14,14 +14,17 @@ from utils.logging import get_logger
 def _bps_to_frac(bps: float) -> float:
     return bps / 10000.0
 
+
 def load_prices(raw_path: Path) -> pd.DataFrame:
     df = pd.read_csv(raw_path, parse_dates=["date"])
     df = df.sort_values("date").reset_index(drop=True)
     return df
 
+
 def build_features(df: pd.DataFrame, short: int, long: int) -> pd.DataFrame:
     strat = MovingAverageCrossover(short, long)
     return strat.generate_signals(df)
+
 
 def run_backtest(cfg: AppConfig) -> dict:
     logger = get_logger("backtest", cfg.io.log_dir)
