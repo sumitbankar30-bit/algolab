@@ -1,21 +1,24 @@
 from __future__ import annotations
+
 import argparse
-from pathlib import Path
 import shutil
 
+from backtests.runner import build_features, load_prices, run_backtest
+from utils.config import AppConfig, load_config
 from utils.paths import repo_path
-from utils.config import load_config, AppConfig
-from backtests.runner import run_backtest, load_prices, build_features
+
 
 def ingest(cfg: AppConfig) -> None:
     """Copy raw sample CSV to staging; in real life, validate/download/etc."""
-    raw = repo_path(cfg.data_paths.raw)
-    staging = repo_path(cfg.data_paths.staging)
+    raw = repo_path(str(cfg.data_paths.raw))
+    staging = repo_path(str(cfg.data_paths.staging))
+    out_dir = repo_path(str(cfg.data_paths.features))
     staging.mkdir(parents=True, exist_ok=True)
     src = raw / "prices_sample.csv"
     dst = staging / "prices_sample.csv"
     shutil.copy2(src, dst)
     print(f"[ingest] Copied {src} -> {dst}")
+
 
 def features(cfg: AppConfig) -> None:
     """Build MA features and save to data/features."""
@@ -30,10 +33,12 @@ def features(cfg: AppConfig) -> None:
     df_feat.to_csv(out, index=False)
     print(f"[features] Wrote features to {out}")
 
+
 def backtest(cfg: AppConfig) -> None:
     """Run toy backtest and write a JSON report."""
     summary = run_backtest(cfg)
     print("[backtest] Summary:", summary)
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="algolab tasks")
@@ -52,6 +57,7 @@ def main() -> None:
         features(cfg)
     elif args.command == "backtest":
         backtest(cfg)
+
 
 if __name__ == "__main__":
     main()

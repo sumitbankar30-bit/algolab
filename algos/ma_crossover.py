@@ -1,6 +1,9 @@
 from __future__ import annotations
+
 import pandas as pd
+
 from .base import Strategy
+
 
 class MovingAverageCrossover(Strategy):
     def __init__(self, short: int, long: int) -> None:

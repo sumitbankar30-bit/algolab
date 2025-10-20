@@ -1,3 +1,24 @@
+Metadata-Version: 2.4
+Name: algolab
+Version: 0.0.1
+Summary: Algorithmic trading lab scaffold
+Author: Your Name
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic>=2.6
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: pandas>=2.1
+Requires-Dist: numpy>=1.26
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4; extra == "dev"
+Requires-Dist: pytest-cov>=4.1; extra == "dev"
+Requires-Dist: black>=24.1; extra == "dev"
+Requires-Dist: ruff>=0.5.0; extra == "dev"
+Requires-Dist: mypy>=1.8; extra == "dev"
+Requires-Dist: pre-commit>=3.6; extra == "dev"
+Dynamic: license-file
+
 # algolab — Phase 0 scaffold
 
 A minimal, reproducible lab for algorithmic trading research and backtesting.
