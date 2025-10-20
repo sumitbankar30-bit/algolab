@@ -1,8 +1,10 @@
 from __future__ import annotations
+
 from pathlib import Path
-from typing import Optional
+
 import yaml
 from pydantic import BaseModel, Field, field_validator
+
 
 class DataPaths(BaseModel):
     raw: Path
@@ -27,8 +29,8 @@ class BacktestConfig(BaseModel):
     initial_capital: float = Field(100000, ge=0)
     fee_bps: float = Field(0.0, ge=0)
     slippage_bps: float = Field(0.0, ge=0)
-    start: Optional[str] = None
-    end: Optional[str] = None
+    start: str | None = None
+    end: str | None = None
 
 class IOConfig(BaseModel):
     report_path: Path = Path("reports/backtest_summary.json")

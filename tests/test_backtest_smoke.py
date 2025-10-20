@@ -1,5 +1,6 @@
-from utils.config import load_config
 from backtests.runner import run_backtest
+from utils.config import load_config
+
 
 def test_backtest_smoke():
     cfg = load_config("configs/default.yaml")

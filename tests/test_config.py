@@ -1,5 +1,7 @@
 from pathlib import Path
-from utils.config import load_config, AppConfig
+
+from utils.config import AppConfig, load_config
+
 
 def test_config_loads(tmp_path: Path):
     cfg = load_config(Path("configs/default.yaml"))

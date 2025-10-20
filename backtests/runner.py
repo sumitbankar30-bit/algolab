@@ -1,12 +1,15 @@
 from __future__ import annotations
-from pathlib import Path
-import json
-import pandas as pd
-import numpy as np
 
+import json
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+from algos.ma_crossover import MovingAverageCrossover
 from utils.config import AppConfig
 from utils.logging import get_logger
-from algos.ma_crossover import MovingAverageCrossover
+
 
 def _bps_to_frac(bps: float) -> float:
     return bps / 10000.0
@@ -63,7 +66,7 @@ def run_backtest(cfg: AppConfig) -> dict:
     win_rate = (df["strategy_return"] > 0).mean()
 
     summary = {
-        "observations": int(len(df)),
+        "observations": len(df),
         "total_return": float(total_return),
         "sharpe_annualized": float(sharpe),
         "win_rate": float(win_rate),

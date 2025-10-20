@@ -1,8 +1,10 @@
 from __future__ import annotations
+
 import logging
+from datetime import datetime
 from logging import Logger
 from pathlib import Path
-from datetime import datetime
+
 
 def get_logger(name: str, log_dir: Path) -> Logger:
     log_dir.mkdir(parents=True, exist_ok=True)
